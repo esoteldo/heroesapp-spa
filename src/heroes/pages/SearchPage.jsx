@@ -1,9 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm"
-
+import queryString from 'query-string'
 
 export const SearchPage = () => {
 const navigate=useNavigate();
+const location=useLocation();
+
+const {q=''}=queryString.parse(location.search)
+
 
 const {searchText,onInputChange}=useForm({
   searchText:''
@@ -50,7 +54,7 @@ console.log({searchText});
           Searh a hero
         </div>
         <div className="alert alert-danger">
-          not hero with <b>ABC</b>
+          not hero with <b>{ q }</b>
         </div>
       </div>
     </div>
